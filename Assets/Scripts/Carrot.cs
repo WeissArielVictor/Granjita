@@ -17,11 +17,10 @@ public class Carrot : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.name==("PlayeObject"))
+        if(collision.CompareTag("Player"))
         {
-            PlayerMain p = collision.GetComponent<PlayerMain>();
-            p.quantityOfCarrots += 1;
-            Debug.Log("Has " + p.quantityOfCarrots + " carrots");
+            Debug.Log("Grabbed Carrot");
+            gameObject.SetActive(false);
         }
     }
 }

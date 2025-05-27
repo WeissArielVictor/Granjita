@@ -22,4 +22,12 @@ public class Pomberito : MonoBehaviour
             Debug.Log("Pomberito is enrage");
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Arrow"))
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
 }

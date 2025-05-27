@@ -19,6 +19,11 @@ public class PlayerMain : MonoBehaviour
     public int quantityOfPumpkins = 0;
     public int quantityOfCarrots = 0;
 
+    [SerializeField] private GameObject arrow;
+    [SerializeField] private float arrowSpeed=10;
+    [SerializeField] private Vector3 margin = new Vector3(1, 0, 1);
+    [SerializeField]private float rotationSpeed = 10f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +39,12 @@ public class PlayerMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Correr
         Sprint();
+        //Disparar flecha
+        shoot();
+        //Rotación
+        rotation();
         // Movimiento vertical
         MovV();
         // Movimiento horizontal
@@ -90,6 +99,31 @@ public class PlayerMain : MonoBehaviour
         }
     }
 
+    private void shoot()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            Vector3 posV3 = transform.position;
+            GameObject a= Instantiate(arrow, (posV3+margin), transform.rotation);
+
+            Rigidbody2D rbArrow = a.GetComponent<Rigidbody2D>();
+
+            rbArrow.velocity = transform.right * arrowSpeed;
+
+            Destroy(a.gameObject, 2f);
+        }
+    }
+    void rotation()
+    {
+        if (Input.GetKey(KeyCode.Q))
+        {
+            transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime * (-1));
+        }
+    }
     /*Código para movimiento con velocity
     private void FixedUpdate()
     {
