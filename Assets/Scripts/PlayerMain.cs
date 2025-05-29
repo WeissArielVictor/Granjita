@@ -13,6 +13,7 @@ public class PlayerMain : MonoBehaviour
     private float speed;
 
     private Rigidbody2D rb;
+    public Animator animator;
 
     private int lifePlayer = 0;
 
@@ -33,7 +34,18 @@ public class PlayerMain : MonoBehaviour
         ChangeLife(100);
         Debug.Log("Life player =" + lifePlayer);
         speed = normalSpeed;
-        
+
+        animator = GetComponent<Animator>();
+
+        if (Mathf.Abs(rb.velocity.x) > 0 || Mathf.Abs(rb.velocity.y) > 0)
+        {
+            animator.SetFloat("xVelocity", 1);
+        }
+        else
+        {
+            animator.SetFloat("xVelocity", 0);
+        }
+
     }
 
     // Update is called once per frame
