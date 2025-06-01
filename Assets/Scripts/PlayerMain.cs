@@ -29,7 +29,7 @@ public class PlayerMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Game started!!!!!!!!!");
+        Debug.Log("Game sputo");
         rb = GetComponent<Rigidbody2D>();
         ChangeLife(100);
         Debug.Log("Life playerssssss =" + lifePlayer);
@@ -136,6 +136,7 @@ public class PlayerMain : MonoBehaviour
             transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime * (-1));
         }
     }
+    
     /*Código para movimiento con velocity
     private void FixedUpdate()
     {
