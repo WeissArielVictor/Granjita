@@ -29,10 +29,10 @@ public class PlayerMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Game started");
+        Debug.Log("Game started!!!!!!!!!");
         rb = GetComponent<Rigidbody2D>();
         ChangeLife(100);
-        Debug.Log("Life player =" + lifePlayer);
+        Debug.Log("Life playerssssss =" + lifePlayer);
         speed = normalSpeed;
 
         animator = GetComponent<Animator>();
