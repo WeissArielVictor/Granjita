@@ -8,12 +8,13 @@ public class PlayerMain : MonoBehaviour
     private int movimientoVertical = 0;
     private Vector2 mov = new Vector2(0, 0);
 
-    [SerializeField] private float normalSpeed = 3;
-    [SerializeField] private float fastSpeed= 6;
+    [SerializeField] private float normalSpeed = 100;
+    [SerializeField] private float fastSpeed= 200;
     private float speed;
 
     private Rigidbody2D rb;
     public Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     private int lifePlayer = 0;
 
@@ -36,21 +37,14 @@ public class PlayerMain : MonoBehaviour
         speed = normalSpeed;
 
         animator = GetComponent<Animator>();
-
-        if (Mathf.Abs(rb.velocity.x) > 0 || Mathf.Abs(rb.velocity.y) > 0)
-        {
-            animator.SetFloat("xVelocity", 1);
-        }
-        else
-        {
-            animator.SetFloat("xVelocity", 0);
-        }
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckWalk();
         //Correr
         Sprint();
         //Disparar flecha
@@ -66,12 +60,12 @@ public class PlayerMain : MonoBehaviour
         //Normalizamos el vector
         mov = mov.normalized;
         //Código para mover con transform
-        transform.Translate(mov * speed * Time.deltaTime);
+        //transform.Translate(mov * speed * Time.deltaTime);
         //Código para movimiento con addforce
        // rb.AddForce(mov * speed * Time.fixedDeltaTime);
 
     }
-    private void MovV()
+    private void MovH()
     {
         if (Input.GetKey(KeyCode.D))
         {
@@ -82,8 +76,9 @@ public class PlayerMain : MonoBehaviour
             movimientoHorizontal = (-1);
         }
         else { movimientoHorizontal = 0; }
+        FlipSprite();
     }
-    private void MovH()
+    private void MovV()
     {
         if (Input.GetKey(KeyCode.W))
         {
@@ -115,6 +110,7 @@ public class PlayerMain : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.F))
         {
+            animator.SetTrigger("PlayerAttack");
             Vector3 posV3 = transform.position;
             GameObject a= Instantiate(arrow, (posV3+margin), transform.rotation);
 
@@ -136,12 +132,28 @@ public class PlayerMain : MonoBehaviour
             transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime * (-1));
         }
     }
-    
-    /*Código para movimiento con velocity
+    void CheckWalk()
+    {
+        if (Mathf.Abs(rb.velocity.x)>0||Mathf.Abs(rb.velocity.y)>0)
+        {
+            animator.SetFloat("xVelocity", 1);
+        }
+        else
+        {
+            animator.SetFloat("xVelocity", 0);
+        }
+    }
+    private void FlipSprite()
+    {
+        if(movimientoHorizontal!=0)
+        {
+            spriteRenderer.flipX = movimientoHorizontal < 0;
+        }
+    }
+    //Código para movimiento con velocity
     private void FixedUpdate()
     {
         rb.velocity = mov * speed * Time.fixedDeltaTime;
     }
-    */
 
 }

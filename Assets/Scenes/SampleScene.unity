@@ -299,7 +299,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5990,8 +5990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c850d914393dbc14882a82725cf96b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSpeed: 3
-  fastSpeed: 6
+  normalSpeed: 100
+  fastSpeed: 200
   animator: {fileID: 0}
   quantityOfPumpkins: 0
   quantityOfCarrots: 0
