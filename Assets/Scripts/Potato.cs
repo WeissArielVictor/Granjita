@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pumpkin : MonoBehaviour
+public class Potato : MonoBehaviour
 {
     [SerializeField] private float respawnTime = 5f;
-    [SerializeField] private string itemName = "pumpkin";
+    [SerializeField] private string itemName = "potato";
+
     void Start()
     {
         
@@ -15,6 +16,7 @@ public class Pumpkin : MonoBehaviour
     {
         
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -28,4 +30,5 @@ public class Pumpkin : MonoBehaviour
             }
         }
     }
+
 }

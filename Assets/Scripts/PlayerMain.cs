@@ -17,6 +17,7 @@ public class PlayerMain : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private int lifePlayer = 0;
+    private Dictionary<string, int> inventory = new Dictionary<string, int>();
 
     public int quantityOfPumpkins = 0;
     public int quantityOfCarrots = 0;
@@ -154,6 +155,28 @@ public class PlayerMain : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = mov * speed * Time.fixedDeltaTime;
+    }
+
+    public void StartVegetableRespawn(GameObject veggie, float seconds)
+    {
+        StartCoroutine(RespawnVegetable(veggie, seconds));
+    }
+
+    private IEnumerator RespawnVegetable(GameObject veggie, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        veggie.SetActive(true);
+    }
+
+    public void AddToInventory(string itemName)
+    {
+        if (!inventory.ContainsKey(itemName))
+        {
+            inventory[itemName] = 0;
+        }
+
+        inventory[itemName]++;
+        Debug.Log($"Picked {inventory[itemName]} {itemName}{(inventory[itemName] == 1 ? "" : "s")}");
     }
 
 }

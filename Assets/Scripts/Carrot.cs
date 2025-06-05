@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Carrot : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private float respawnTime = 5f;
+    [SerializeField] private string itemName = "carrot";
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -19,8 +20,13 @@ public class Carrot : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            Debug.Log("Grabbed Carrot");
-            gameObject.SetActive(false);
+            PlayerMain player = collision.GetComponent<PlayerMain>();
+            if (player != null)
+            {
+                player.AddToInventory(itemName);
+                player.StartVegetableRespawn(gameObject, respawnTime);
+                gameObject.SetActive(false);
+            }
         }
     }
 }
