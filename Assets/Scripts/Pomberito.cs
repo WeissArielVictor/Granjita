@@ -16,11 +16,12 @@ public class Pomberito : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!enragePomberito && tm.timeToFinish<=5)
+        /*if(!enragePomberito && tm.timeToFinish<=5)
         {
             enragePomberito = true;
             Debug.Log("Pomberito is enrage");
         }
+        */
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
