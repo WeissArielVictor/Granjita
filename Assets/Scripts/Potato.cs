@@ -21,7 +21,7 @@ public class Potato : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            PlayerMain player = collision.GetComponent<PlayerMain>();
+            PlayerMain player = collision.GetComponentInParent<PlayerMain>();
             if (player != null)
             {
                 player.AddToInventory(itemName);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMain : MonoBehaviour
 {
@@ -22,13 +23,19 @@ public class PlayerMain : MonoBehaviour
 
     public int quantityOfPumpkins = 0;
     public int quantityOfCarrots = 0;
+    public int quantityOfTomatoes = 0;
+    public int quantityOfPotatoes = 0;
 
     [SerializeField] private GameObject arrow;
     [SerializeField] private float arrowSpeed=10;
     [SerializeField] private Vector3 margin = new Vector3(1, 0, 1);
     [SerializeField]private float rotationSpeed = 10f;
-    public Image lifeBar;
 
+    public Image lifeBar;
+    public TextMeshProUGUI carrotCounter;
+    public TextMeshProUGUI tomatoCounter;
+    public TextMeshProUGUI potatoCounter;
+    public TextMeshProUGUI pumpkinCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +50,7 @@ public class PlayerMain : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         //Barra de vida
-        lifeBar.fillAmount = (lifePlayer / 100);
+        //lifeBar.fillAmount = (lifePlayer / 100);
     }
 
     // Update is called once per frame
@@ -67,7 +74,18 @@ public class PlayerMain : MonoBehaviour
         //Código para mover con transform
         //transform.Translate(mov * speed * Time.deltaTime);
         //Código para movimiento con addforce
-       // rb.AddForce(mov * speed * Time.fixedDeltaTime);
+        // rb.AddForce(mov * speed * Time.fixedDeltaTime);
+
+        if (Input.GetKeyDown(KeyCode.H)) // 'H' de hurt (herida)
+        {
+            Debug.Log("Presionaste H");
+            ChangeLife(-10); // baja 10 puntos de vida
+        }
+        if (Input.GetKeyDown(KeyCode.J)) // 'J' de jugo (curar)
+        {
+            ChangeLife(+10); // sube 10 puntos de vida
+        }
+
 
     }
     private void MovH()
@@ -95,10 +113,19 @@ public class PlayerMain : MonoBehaviour
         }
         else { movimientoVertical = 0; }
     }
-    private void ChangeLife(int a)
+    private void ChangeLife(int amount)
     {
-        lifePlayer += a;
+        lifePlayer += amount;
+        lifePlayer = Mathf.Clamp(lifePlayer, 0, 100);
+
+        Debug.Log($"Vida actual: {lifePlayer}");
+
+        if (lifeBar != null)
+        {
+            lifeBar.fillAmount = lifePlayer / 100f;
+        }
     }
+
     private void Sprint()
     {
         if(Input.GetKeyDown(KeyCode.LeftShift))
@@ -174,6 +201,7 @@ public class PlayerMain : MonoBehaviour
 
     public void AddToInventory(string itemName)
     {
+        Debug.Log($"Intentando agregar: {itemName}");
         if (!inventory.ContainsKey(itemName))
         {
             inventory[itemName] = 0;
@@ -181,6 +209,25 @@ public class PlayerMain : MonoBehaviour
 
         inventory[itemName]++;
         Debug.Log($"Picked {inventory[itemName]} {itemName}{(inventory[itemName] == 1 ? "" : "s")}");
+
+        if (itemName == "carrot")
+        {
+            quantityOfCarrots++;
+            carrotCounter.text = quantityOfCarrots.ToString();
+            
+        } else if (itemName == "tomato")
+        {
+            quantityOfTomatoes++;
+            tomatoCounter.text = quantityOfTomatoes.ToString();
+        } else if (itemName == "potato")
+        {
+            quantityOfPotatoes++;
+            potatoCounter.text = quantityOfPotatoes.ToString();
+        } else
+        {
+            quantityOfPumpkins++;
+            pumpkinCounter.text = quantityOfPumpkins.ToString();
+        }
     }
 
 }

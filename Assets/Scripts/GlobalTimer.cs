@@ -25,11 +25,9 @@ public class GlobalTimer : MonoBehaviour
             if (timeToFinish > 0)
             {
                 timeToFinish -= Time.deltaTime;
-                Debug.Log("Remaining time: " + (int)timeToFinish);
             }
             else
             {
-                Debug.Log("Time's up");
                 timeToFinish = 0;
                 timerOn = false;
 
