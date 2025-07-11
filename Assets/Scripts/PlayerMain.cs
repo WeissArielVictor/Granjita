@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMain : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class PlayerMain : MonoBehaviour
     [SerializeField] private float arrowSpeed=10;
     [SerializeField] private Vector3 margin = new Vector3(1, 0, 1);
     [SerializeField]private float rotationSpeed = 10f;
+    public Image lifeBar;
 
 
     // Start is called before the first frame update
@@ -40,6 +42,8 @@ public class PlayerMain : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        //Barra de vida
+        lifeBar.fillAmount = (lifePlayer / 100);
     }
 
     // Update is called once per frame
