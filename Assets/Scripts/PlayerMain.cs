@@ -15,7 +15,7 @@ public class PlayerMain : MonoBehaviour
     private float speed;
 
     private Rigidbody2D rb;
-    public Animator animator;
+    //public Animator animator;
     private SpriteRenderer spriteRenderer;
 
     private int lifePlayer = 0;
@@ -26,8 +26,8 @@ public class PlayerMain : MonoBehaviour
     public int quantityOfTomatoes = 0;
     public int quantityOfPotatoes = 0;
 
-    [SerializeField] private GameObject arrow;
-    [SerializeField] private float arrowSpeed=10;
+    //[SerializeField] private GameObject arrow;
+    //[SerializeField] private float arrowSpeed=10;
     [SerializeField] private Vector3 margin = new Vector3(1, 0, 1);
     [SerializeField]private float rotationSpeed = 10f;
 
@@ -46,7 +46,7 @@ public class PlayerMain : MonoBehaviour
         Debug.Log("Life playerssssss =" + lifePlayer);
         speed = normalSpeed;
 
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         //Barra de vida
@@ -56,11 +56,11 @@ public class PlayerMain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckWalk();
+        //CheckWalk();
         //Correr
-        Sprint();
+        //Sprint();
         //Disparar flecha
-        shoot();
+        //shoot();
         //Rotación
         rotation();
         // Movimiento vertical
@@ -138,11 +138,11 @@ public class PlayerMain : MonoBehaviour
         }
     }
 
-    private void shoot()
+    /*private void shoot()
     {
         if(Input.GetKeyDown(KeyCode.F))
         {
-            animator.SetTrigger("PlayerAttack");
+           // animator.SetTrigger("PlayerAttack");
             Vector3 posV3 = transform.position;
             GameObject a= Instantiate(arrow, (posV3+margin), transform.rotation);
 
@@ -153,6 +153,7 @@ public class PlayerMain : MonoBehaviour
             Destroy(a.gameObject, 2f);
         }
     }
+    */
     void rotation()
     {
         if (Input.GetKey(KeyCode.Q))
@@ -164,7 +165,7 @@ public class PlayerMain : MonoBehaviour
             transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime * (-1));
         }
     }
-    void CheckWalk()
+   /* void CheckWalk()
     {
         if (Mathf.Abs(rb.velocity.x)>0||Mathf.Abs(rb.velocity.y)>0)
         {
@@ -175,6 +176,7 @@ public class PlayerMain : MonoBehaviour
             animator.SetFloat("xVelocity", 0);
         }
     }
+   */
     private void FlipSprite()
     {
         if(movimientoHorizontal!=0)

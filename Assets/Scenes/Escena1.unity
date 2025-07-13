@@ -7993,7 +7993,6 @@ GameObject:
   - component: {fileID: 1948435841}
   - component: {fileID: 1948435843}
   - component: {fileID: 1948435844}
-  - component: {fileID: 1948435845}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: Player
@@ -8129,13 +8128,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalSpeed: 100
   fastSpeed: 200
-  animator: {fileID: 0}
   quantityOfPumpkins: 0
   quantityOfCarrots: 0
   quantityOfTomatoes: 0
   quantityOfPotatoes: 0
-  arrow: {fileID: 9133431916328190580, guid: 03c2c8a016ccdc54f99a8e4d47fcf96a, type: 3}
-  arrowSpeed: 10
   margin: {x: 1, y: 0, z: 1}
   rotationSpeed: 10
   lifeBar: {fileID: 2078936876}
@@ -8143,27 +8139,6 @@ MonoBehaviour:
   tomatoCounter: {fileID: 308784394}
   potatoCounter: {fileID: 959643809}
   pumpkinCounter: {fileID: 635921924}
---- !u!95 &1948435845
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948435838}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 379d7f71d50cf0143b5e1514f107b64d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2078936874
 GameObject:
   m_ObjectHideFlags: 0
